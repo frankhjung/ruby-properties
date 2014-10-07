@@ -34,6 +34,30 @@ class TestVersion < Minitest::Test
     assert_empty @version.as_list
   end
 
+  # test to_s 1.2.3
+  def test_to_s_1_2_3
+    version = '1.2.3'
+    @version.parse(version)
+    refute_nil @version.as_list
+    assert_equal(version, @version.to_s)
+  end
+
+  # test to_s 1
+  def test_to_s_1
+    version = '1'
+    @version.parse(version)
+    refute_nil @version.as_list
+    assert_equal(version, @version.to_s)
+  end
+
+  # test to_s 1.0-SNAPSHOT
+  def test_to_s_1_0_snapshot
+    version = '1.0-SNAPSHOT'
+    @version.parse(version)
+    refute_nil @version.as_list
+    assert_equal(version, @version.to_s)
+  end
+
   # test major: 1
   def test_major
     version = '1'
