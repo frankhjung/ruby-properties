@@ -3,6 +3,11 @@
 
 # Process a version number.
 #
+# To Do
+#
+# * add (static) compare operators
+#   where SNAPSHOT below equivalent release version
+#
 # Author:: Frank Jung
 # License:: see LICENSE
 class Version
@@ -66,6 +71,4 @@ class Version
       end
     end
   end
-
-  # need a compare method for versions
 end
