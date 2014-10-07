@@ -6,7 +6,7 @@
 # Author:: Frank Jung
 # License:: see LICENSE
 class Version
-  # returns just version as a hash
+  # returns version as a list
   attr_reader :as_list
 
   # Default constructor
