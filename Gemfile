@@ -1,6 +1,5 @@
 # using version in .ruby-version
 
-source 'http://nexus.nbnco.net.au/content/groups/rubygems'
 source 'https://rubygems.org'
 
 gem 'rake', '~>10.3'
