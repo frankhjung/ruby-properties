@@ -27,16 +27,20 @@ class TestVersion < Minitest::Test
     assert_instance_of(Version, @version)
   end
 
+  # test major: nil
+  def test_nil
+    version = ''
+    @version.parse(version)
+    assert_empty @version.as_list
+  end
+
   # test major: 1
   def test_major
     version = '1'
     @version.parse(version)
     refute_nil @version.as_list
-    refute_nil @version.as_hash
     assert_equal(1, @version.as_list.length)
-    assert_equal(1, @version.as_hash['major'])
-    assert_nil(@version.as_hash['minor'])
-    assert_nil(@version.as_hash['build'])
+    assert_equal(1, @version.as_list[0])
   end
 
   # test major and minor: 1.2
@@ -44,12 +48,9 @@ class TestVersion < Minitest::Test
     version = '1.2'
     @version.parse(version)
     refute_nil @version.as_list
-    refute_nil @version.as_hash
     assert_equal(2, @version.as_list.length)
-    assert_equal(1, @version.as_hash['major'])
-    assert_equal(2, @version.as_hash['minor'])
-    assert_nil @version.as_hash['build']
-    assert_nil @version.as_hash['patch']
+    assert_equal(1, @version.as_list[0])
+    assert_equal(2, @version.as_list[1])
   end
 
   # test major, minor and build: 1.2.3
@@ -57,12 +58,10 @@ class TestVersion < Minitest::Test
     version = '1.2.3'
     @version.parse(version)
     refute_nil @version.as_list
-    refute_nil @version.as_hash
     assert_equal(3, @version.as_list.length)
-    assert_equal(1, @version.as_hash['major'])
-    assert_equal(2, @version.as_hash['minor'])
-    assert_equal(3, @version.as_hash['build'])
-    assert_nil @version.as_hash['patch']
+    assert_equal(1, @version.as_list[0])
+    assert_equal(2, @version.as_list[1])
+    assert_equal(3, @version.as_list[2])
   end
 
   # test snapshot: 1.0.0-SNAPSHOT
@@ -70,12 +69,11 @@ class TestVersion < Minitest::Test
     version = '1.0.0-SNAPSHOT'
     @version.parse(version)
     refute_nil @version.as_list
-    refute_nil @version.as_hash
-    assert_equal(3, @version.as_list.length)
-    assert_equal(1, @version.as_hash['major'])
-    assert_equal(0, @version.as_hash['minor'])
-    assert_equal(0, @version.as_hash['build'])
-    assert_equal('-SNAPSHOT', @version.as_hash['patch'])
+    assert_equal(4, @version.as_list.length)
+    assert_equal(1, @version.as_list[0])
+    assert_equal(0, @version.as_list[1])
+    assert_equal(0, @version.as_list[2])
+    assert_equal('SNAPSHOT', @version.as_list[3])
   end
 
   # test patch: 3.2.1d
@@ -83,24 +81,32 @@ class TestVersion < Minitest::Test
     version = '3.2.1d'
     @version.parse(version)
     refute_nil @version.as_list
-    refute_nil @version.as_hash
-    assert_equal(3, @version.as_list.length)
-    assert_equal(3, @version.as_hash['major'])
-    assert_equal(2, @version.as_hash['minor'])
-    assert_equal(1, @version.as_hash['build'])
-    assert_equal('d', @version.as_hash['patch'])
+    assert_equal(4, @version.as_list.length)
+    assert_equal(3, @version.as_list[0])
+    assert_equal(2, @version.as_list[1])
+    assert_equal(1, @version.as_list[2])
+    assert_equal('d', @version.as_list[3])
   end
 
   # test patch: 2.1d
-  def test_patch
+  def test_short_patch
     version = '2.1d'
     @version.parse(version)
     refute_nil @version.as_list
-    refute_nil @version.as_hash
-    assert_equal(2, @version.as_list.length)
-    assert_equal(2, @version.as_hash['major'])
-    assert_equal(1, @version.as_hash['minor'])
-    assert_equal('d', @version.as_hash['build'])
-    assert_equal(nil, @version.as_hash['patch'])
+    assert_equal(3, @version.as_list.length)
+    assert_equal(2, @version.as_list[0])
+    assert_equal(1, @version.as_list[1])
+    assert_equal('d', @version.as_list[2])
+  end
+
+  # test patch: 1.0-SNAPSHOT
+  def test_short_snapshot
+    version = '1.0-SNAPSHOT'
+    @version.parse(version)
+    refute_nil @version.as_list
+    assert_equal(3, @version.as_list.length)
+    assert_equal(1, @version.as_list[0])
+    assert_equal(0, @version.as_list[1])
+    assert_equal('SNAPSHOT', @version.as_list[2])
   end
 end
