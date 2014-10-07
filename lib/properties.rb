@@ -18,6 +18,7 @@ class Properties
   end
 
   # Parse a properties file
+  #
   # * Load cleansed lines into an array
   # * Load key values into a hash
   def parse(file)
@@ -30,7 +31,7 @@ class Properties
         @as_list << work
       elsif work.include? '=' then
         k, v = work.split('=')
-        append k, v
+        _append k, v
       end
     end
   end
@@ -38,7 +39,7 @@ class Properties
   private
 
   # write only valid properties to list and hash
-  def append(key, value)
+  def _append(key, value)
     return unless key
     k = key.strip
     return unless k.length > 0
