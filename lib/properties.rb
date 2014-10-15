@@ -30,7 +30,7 @@ class Properties
       elsif '#' == work[0] then
         @as_list << work
       elsif work.include? '=' then
-        k, v = work.split('=')
+        k, v = work.split('=', 2)
         _append k, v
       end
     end
