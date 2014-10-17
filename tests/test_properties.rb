@@ -41,18 +41,20 @@ class TestProperties < Minitest::Test
   # test list parsed correctly
   def test_list
     refute_nil @properties.as_list
-    assert_equal(11, @properties.as_list.count)
-    assert_includes(@properties.as_list, 'method.e.version=1.0.0-SNAPSHOT')
-    assert_includes(@properties.as_list, 'method.u.version=')
-    refute_includes(@properties.as_list, '=3.14.15')
+    assert_equal 12, @properties.as_list.count
+    assert_includes @properties.as_list, 'method.e.version=1.0.0-SNAPSHOT'
+    assert_includes @properties.as_list, 'method.u.version='
+    assert_includes @properties.as_list, 'method.h.version=1.2=3.4'
+    refute_includes @properties.as_list, '=3.14.15'
   end
 
   # test hash parsed correctly
   def test_hash
     refute_nil @properties.as_list
-    assert_equal(8, @properties.as_hash.length)
-    assert_includes(@properties.as_hash.keys, 'method.g.version')
-    assert_equal(@properties.as_hash['method.b.version'], '1.2.3')
-    refute_includes(@properties.as_hash.values, '3.14.15')
+    assert_equal 9, @properties.as_hash.length
+    assert_includes @properties.as_hash.keys, 'method.g.version'
+    assert_equal @properties.as_hash['method.b.version'], '1.2.3'
+    assert_equal @properties.as_hash['method.h.version'], '1.2=3.4'
+    refute_includes @properties.as_hash.values, '3.14.15'
   end
 end
