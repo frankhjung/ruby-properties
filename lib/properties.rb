@@ -27,9 +27,9 @@ class Properties
       work = line.strip
       if work.empty?
         next
-      elsif '#' == work[0] then
+      elsif '#' == work[0]
         @as_list << work
-      elsif work.include? '=' then
+      elsif work.include? '='
         k, v = work.split('=', 2)
         _append k, v
       end
