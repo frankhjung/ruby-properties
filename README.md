@@ -26,10 +26,14 @@ rubocop
 
 To correct "Missing frozen string literal comment" error run:
 
-  bundle exec rubocop --auto-correct --only FrozenStringLiteralComment
+```bash
+bundle exec rubocop --auto-correct --only FrozenStringLiteralComment
+```
 
 or
 
-  ./build.sh check:auto_correct
+```bash
+./build.sh check:auto_correct
+```
 
 Overrides are defined in [rubocop.yml](.rubocop.yml)
