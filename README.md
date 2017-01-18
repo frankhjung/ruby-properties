@@ -3,8 +3,8 @@ ruby-properties
 
 A Ruby example to read and process a Java like properties file.
 
-The `build.sh` script will prepare the gem set, update bundles and invoke
-[rake](https://github.com/ruby/rake). The rake targets are:
+The [build.sh](./build.sh) script will prepare the gem set, update bundles and
+invoke [rake](https://github.com/ruby/rake). The rake targets are:
 
 * bundles             - Install bundles
 * check               - Check project syntax with RuboCop
@@ -20,3 +20,16 @@ The `build.sh` script will prepare the gem set, update bundles and invoke
 * test                - Test classes
 
 The default build target is `test`.
+
+rubocop
+-------
+
+To correct "Missing frozen string literal comment" error run:
+
+  bundle exec rubocop --auto-correct --only FrozenStringLiteralComment
+
+or
+
+  ./build.sh check:auto_correct
+
+Overrides are defined in [rubocop.yml](.rubocop.yml)

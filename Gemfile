@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 # using version in .ruby-version
 
 source 'https://rubygems.org'
 
-gem 'rake', '~>10.3'
-gem 'minitest', '~>5.4'
-gem 'rubocop', '~>0.26'
-gem 'trollop', '~>2.0'
+gem 'rake', '~>10.4'
+gem 'minitest', '~>5.8'
+gem 'rubocop', '~>0.47'
+gem 'trollop', '~>2.1'

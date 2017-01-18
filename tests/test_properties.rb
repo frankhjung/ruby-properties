@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 # Test properties.
 #
@@ -15,7 +16,8 @@ require 'minitest/autorun'
 #
 # * Tested with:
 #
-#   ruby 2.1.3p242 (2014-09-19 revision 47630) [x86_64-linux]
+#   - ruby 2.1.3p242 (2014-09-19 revision 47630) [x86_64-linux]
+#   - ruby-2.3.3 [ x86_64 ]
 #
 # * MiniTest:
 #

@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # coding: utf-8
+# frozen_string_literal: true
 
 # Process a version number.
 #
@@ -25,7 +26,7 @@ class Version
 
   # Parse a version string into an array
   def parse(version)
-    fail unless version
+    raise unless version
     @version = version.strip
     _split_into_delimiters
     _split_into_parts
@@ -51,18 +52,17 @@ class Version
   # Save delimeters as a list
   def _split_into_delimiters
     @version.chars.each do |c|
-      @separators << c if /(\W)/.match(c)
+      @separators << c if /(\W)/ =~ c
     end
   end
 
   # Split version into a list
   def _split_into_parts
     @version.split(/\W+/).each do |part|
-      if !part
-        next
-      elsif /^(\d+)$/.match(part)
+      next unless part
+      if /^(\d+)$/ =~ part
         @as_list << part.to_i
-      elsif /^(\d+)(\D*)$/.match(part)
+      elsif /^(\d+)(\D*)$/ =~ part
         parts = /^(\d+)(\D*)$/.match(part)
         @as_list << parts[1].to_i
         @as_list << parts[2]

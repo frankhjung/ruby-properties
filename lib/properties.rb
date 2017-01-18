@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # coding: utf-8
+# frozen_string_literal: true
 
 # Load a properties file into a hash.
 #
@@ -22,12 +23,11 @@ class Properties
   # * Load cleansed lines into an array
   # * Load key values into a hash
   def parse(file)
-    fail unless File.file?(file)
+    raise unless File.file?(file)
     IO.foreach(file) do |line|
       work = line.strip
-      if work.empty?
-        next
-      elsif '#' == work[0]
+      next if work.empty?
+      if '#' == work[0]
         @as_list << work
       elsif work.include? '='
         k, v = work.split('=', 2)
@@ -42,7 +42,7 @@ class Properties
   def _append(key, value)
     return unless key
     k = key.strip
-    return unless k.length > 0
+    return unless k.length.positive?
     v = value ? value.strip : ''
     @as_hash[k] = v
     @as_list << k + '=' + v
