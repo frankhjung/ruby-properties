@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# coding: utf-8
 # frozen_string_literal: true
 
 # Load a properties file into a hash.
@@ -27,7 +26,7 @@ class Properties
     IO.foreach(file) do |line|
       work = line.strip
       next if work.empty?
-      if '#' == work[0]
+      if work[0] == '#'
         @as_list << work
       elsif work.include? '='
         k, v = work.split('=', 2)
