@@ -13,16 +13,16 @@ srcs = FileList.new('main.rb', 'lib/*.rb')
 
 desc 'Show help'
 task :help do
-  puts <<HELP
-  For Rakefile help call:
-    rake -D
-  Or
-    rake -T
-  To cleanup unused Gems use:
-    bundle clean --force -V
-  To show gemsets use:
-    rvm gemsets list
-HELP
+  puts <<~HELP
+    For Rakefile help call:
+      rake -D
+    Or
+      rake -T
+    To cleanup unused Gems use:
+      bundle clean --force -V
+    To show gemsets use:
+      rvm gemsets list
+  HELP
 end
 
 CLEAN.include('**/*.bak', '**/*~')

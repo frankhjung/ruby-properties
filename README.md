@@ -33,7 +33,7 @@ bundle exec rubocop --auto-correct --only FrozenStringLiteralComment
 or
 
 ```bash
-./build.sh check:auto_correct
+./build.sh check:autocorrect_all
 ```
 
 Overrides are defined in [rubocop.yml](.rubocop.yml)

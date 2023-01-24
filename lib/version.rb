@@ -13,6 +13,7 @@
 class Version
   # returns version as a list
   attr_reader :as_list
+
   # return version
   # attr_reader :version
 
@@ -26,6 +27,7 @@ class Version
   # Parse a version string into an array
   def parse(version)
     raise unless version
+
     @version = version.strip
     _split_into_delimiters
     _split_into_parts
@@ -37,6 +39,7 @@ class Version
   # version from its parts.
   def to_s
     return @as_list.join if @separators.empty?
+
     work = []
     @separators.each_index do |i|
       work << @as_list[i]
@@ -59,9 +62,11 @@ class Version
   def _split_into_parts
     @version.split(/\W+/).each do |part|
       next unless part
-      if /^(\d+)$/ =~ part
+
+      case part
+      when /^(\d+)$/
         @as_list << part.to_i
-      elsif /^(\d+)(\D*)$/ =~ part
+      when /^(\d+)(\D*)$/
         parts = /^(\d+)(\D*)$/.match(part)
         @as_list << parts[1].to_i
         @as_list << parts[2]

@@ -1,5 +1,5 @@
-*~
+.*.swp
 *.bak
+*~
 Gemfile.lock
 rdocs/
-.*.swp

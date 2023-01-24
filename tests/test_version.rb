@@ -36,7 +36,7 @@ class TestVersion < Minitest::Test
   end
 
   # test to_s 1.2.3
-  def test_to_s_1_2_3
+  def test_to_s123
     version = '1.2.3'
     @version.parse(version)
     refute_nil @version.as_list
@@ -44,7 +44,7 @@ class TestVersion < Minitest::Test
   end
 
   # test to_s 1
-  def test_to_s_1
+  def test_to_s1
     version = '1'
     @version.parse(version)
     refute_nil @version.as_list
@@ -52,7 +52,7 @@ class TestVersion < Minitest::Test
   end
 
   # test to_s 1.0-SNAPSHOT
-  def test_to_s_1_0_snapshot
+  def test_to_s10snapshot
     version = '1.0-SNAPSHOT'
     @version.parse(version)
     refute_nil @version.as_list

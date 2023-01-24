@@ -23,9 +23,11 @@ class Properties
   # * Load key values into a hash
   def parse(file)
     raise unless File.file?(file)
-    IO.foreach(file) do |line|
+
+    File.foreach(file) do |line|
       work = line.strip
       next if work.empty?
+
       if work[0] == '#'
         @as_list << work
       elsif work.include? '='
@@ -40,10 +42,12 @@ class Properties
   # write only valid properties to list and hash
   def _append(key, value)
     return unless key
+
     k = key.strip
     return unless k.length.positive?
+
     v = value ? value.strip : ''
     @as_hash[k] = v
-    @as_list << k + '=' + v
+    @as_list << "#{k}=#{v}"
   end
 end

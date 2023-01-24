@@ -45,9 +45,9 @@ puts properties.as_list
 hash = properties.as_hash
 puts 'Show in key order:'
 keys = hash.keys.sort
-keys.each { |k| puts k + '=' + hash[k] }
+keys.each { |k| puts "#{k}=#{hash[k]}" }
 
 puts 'Show in value order:'
 inverted = hash.invert
 values = inverted.keys.sort
-values.each { |v| puts inverted[v] + '=' + v }
+values.each { |v| puts "#{inverted[v]}=#{v}" }
